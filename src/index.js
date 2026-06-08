@@ -342,6 +342,15 @@
 
         // Lightbox（数据来自上方 campusImages 数组）
         let currentImage = 0;
+        //何意味
+
+        function getSchoolDurationYears() {
+            const startYear = 1957;
+            const currentYear = new Date().getFullYear();
+            return currentYear - startYear;
+        }
+        
+        document.getElementById('school-duration').textContent = `始建于1957年 · ${getSchoolDurationYears()}年办学历史`;
 
         function openLightbox(index) {
             currentImage = index;
