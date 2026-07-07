@@ -37,10 +37,23 @@
                     <a href="index.html#admission" class="nav-link text-sm font-medium text-slate-700 hover:text-school-dark transition-colors">招生招聘</a>
                     <a href="index.html#contact" class="nav-link text-sm font-medium text-slate-700 hover:text-school-dark transition-colors">联系我们</a>
                 </nav>
-                <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-school-dark text-white text-sm rounded-full hover:bg-school-dark/90 transition-colors">
-                    <i data-lucide="home" class="w-4 h-4"></i>
-                    返回首页
-                </a>
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleAdmissionMenu()" class="md:hidden p-2 hover:bg-slate-100 rounded-full" aria-label="菜单">
+                        <i data-lucide="menu" class="w-6 h-6 text-slate-600"></i>
+                    </button>
+                    <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-school-dark text-white text-sm rounded-full hover:bg-school-dark/90 transition-colors">
+                        <i data-lucide="home" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">返回首页</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="admission-mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white">
+            <div class="px-4 py-4 space-y-1">
+                <a href="index.html#about" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" onclick="toggleAdmissionMenu()">学校概况</a>
+                <a href="index.html#news" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" onclick="toggleAdmissionMenu()">新闻中心</a>
+                <a href="index.html#admission" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" onclick="toggleAdmissionMenu()">招生招聘</a>
+                <a href="index.html#contact" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" onclick="toggleAdmissionMenu()">联系我们</a>
             </div>
         </div>
     </header>
@@ -95,7 +108,7 @@
 
     <footer class="bg-slate-900 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-sm text-white/60">© 大连市第五中学</p>
+            <p class="text-sm text-white/60">© 2026 大连市第五中学</p>
             <div class="flex items-center gap-6 text-sm text-white/70">
                 <a href="index.html#admission" class="hover:text-school-gold transition-colors">招生招聘</a>
                 <a href="index.html#contact" class="hover:text-school-gold transition-colors">联系我们</a>
@@ -105,6 +118,10 @@
 
     <script>
         lucide.createIcons();
+
+        function toggleAdmissionMenu() {
+            document.getElementById('admission-mobile-menu').classList.toggle('hidden');
+        }
     </script>
 </body>
 </html>
