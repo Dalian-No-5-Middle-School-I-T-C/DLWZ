@@ -7,7 +7,7 @@
     <meta name="description" content="大连市第五中学始建于1957年，位于西岗区香工街7号，是一所隶属于西岗区的公办完全中学。学校以和雅教育为办学特色，2024年获评辽宁省特色普通高中。">
     <meta name="keywords" content="大连市第五中学,大连五中,西岗区,完全中学,和雅教育,辽宁省特色普通高中">
     <!-- 请替换为本地校徽图片路径，如 ./images/logo.jpg -->
-    <link rel="icon" type="image/jpeg" href="">
+    <link rel="icon" type="image/jpeg" href="./images/五中logo.jpg">
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="./src/output.css">
@@ -83,9 +83,6 @@
                     <button onclick="toggleSearch()" class="p-2 hover:bg-slate-100 rounded-full transition-colors" aria-label="搜索">
                         <i data-lucide="search" class="w-5 h-5 text-slate-600"></i>
                     </button>
-                    <button onclick="toggleTheme()" class="p-2 hover:bg-slate-100 rounded-full transition-colors hidden sm:hidden" aria-label="切换主题">
-                        <i data-lucide="sun" class="w-5 h-5 text-slate-600" id="theme-icon"></i>
-                    </button>
                     <a href="#" class="hidden md:flex items-center gap-2 px-4 py-2 bg-school-dark text-white text-sm rounded-full hover:bg-school-dark/90 transition-colors" title="即将上线">
                         <i data-lucide="log-in" class="w-4 h-4"></i>
                         师生入口
@@ -143,7 +140,7 @@
                         <div class="max-w-4xl animate-fade-up">
                             <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm mb-6 border border-white/20">
                                 <i data-lucide="calendar" class="w-4 h-4"></i>
-                                <text id="school-duration"></text>
+                                <span id="school-duration"></span>
                             </div>
                             <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white text-shadow mb-6 leading-tight">
                                 自尊 自强<br><span class="text-school-gold">求实 开创</span>
@@ -239,7 +236,7 @@
                     <h3 class="font-bold text-slate-800 text-base mb-1">初中招生简章</h3>
                     <p class="text-sm text-slate-500">2026年招生信息</p>
                 </a>
-                <a href="#calendar" class="group bg-white rounded-2xl p-8 text-center card-hover border border-slate-100" title="即将上线">
+                <a href="#calendar" class="group bg-white rounded-2xl p-8 text-center card-hover border border-slate-100">
                     <div class="w-16 h-16 mx-auto mb-4 bg-school-dark/5 rounded-xl flex items-center justify-center group-hover:bg-school-dark group-hover:text-white transition-all">
                         <i data-lucide="calendar-days" class="w-8 h-8 text-school-dark group-hover:text-white transition-colors"></i>
                     </div>
@@ -371,14 +368,14 @@
                             大连市第五中学始建于<strong class="text-school-dark">1957年</strong>，位于辽宁省大连市西岗区香工街7号，是隶属于西岗区教育局的一所公办完全中学。学校占地面积<strong class="text-school-dark">4万多平方米</strong>，建有教学楼和综合实验楼，拥有400米环形跑道的标准化操场。
                         </p>
                         <p class="text-slate-600 mb-6 leading-relaxed">
-                            经过67年的发展，学校现已成为拥有<strong>22个初中班、18个高中班</strong>，总规模达40个教学班，学生总数近1500人的现代化完全中学。学校以"<strong class="text-school-dark">以人为本，以德树人，以质立校，以特色求发展</strong>"为办学思想，践行"和雅教育"特色，致力于培养"和而不同，雅而有致"的新时代人才。
+                            经过<span id="about-duration-years">--</span>年的发展，学校现已成为拥有<strong>22个初中班、18个高中班</strong>，总规模达40个教学班，学生总数近1500人的现代化完全中学。学校以"<strong class="text-school-dark">以人为本，以德树人，以质立校，以特色求发展</strong>"为办学思想，践行"和雅教育"特色，致力于培养"和而不同，雅而有致"的新时代人才。
                         </p>
                     </div>
 
                     <!-- 数据展示 -->
                     <div class="grid grid-cols-3 gap-6 mt-8">
                         <div class="text-center p-4 bg-white rounded-xl border border-slate-100">
-                            <div class="text-3xl font-bold text-school-dark count-up" data-target="67">0</div>
+                            <div class="text-3xl font-bold text-school-dark count-up" data-stat="school-years" data-target="0">0</div>
                             <div class="text-xs text-slate-500 mt-1">年办学历史</div>
                         </div>
                         <div class="text-center p-4 bg-white rounded-xl border border-slate-100">
@@ -981,7 +978,7 @@
                             <p class="text-xs text-white/60">Dalian No.5 Middle School</p>
                         </div>
                     </div>
-                    <p class="text-sm text-white/70 leading-relaxed mb-6">始建于1957年，67年办学历史。以人为本，以德树人，以质立校，以特色求发展。</p>
+                    <p class="text-sm text-white/70 leading-relaxed mb-6"><span id="footer-school-duration">始建于1957年</span>。以人为本，以德树人，以质立校，以特色求发展。</p>
                     <div class="flex gap-3">
                         <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-school-gold hover:text-school-dark transition-all" title="即将上线">
                             <i data-lucide="message-circle" class="w-5 h-5"></i>
