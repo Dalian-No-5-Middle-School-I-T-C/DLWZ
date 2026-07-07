@@ -244,7 +244,6 @@
         initSchoolDuration();
         renderNotices();
         renderNews();
-        renderCampus();
 
         // 加载动画（loader 可能被注释掉，需做空值检查）
         window.addEventListener('load', () => {
@@ -330,6 +329,8 @@
         document.querySelectorAll('.animate-fade-up').forEach(el => {
             observer.observe(el);
         });
+
+        renderCampus();
 
         // 导航栏滚动效果
         window.addEventListener('scroll', () => {
