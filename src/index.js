@@ -55,7 +55,7 @@
             { src: './images/新教学楼外景.jpg', caption: '新教学楼外景' },
             { src: './images/新教学楼内景.jpg', caption: '新教学楼内景' },
             { src: './images/鸟瞰全景.jpg', caption: '校园鸟瞰全景' },
-            { src: './images/教室照片.jpg', caption: '和雅多功能教室' },
+            { src: './images/教室照片.jpg', caption: '农业社团活动' },
             { src: './images/校园活动.JPG', caption: '阳光大课间' },
             { src: './images/毕业典礼.jpg', caption: '桃李芬芳毕业季' },
             { src: './images/新楼正门内景.jpg', caption: '新楼正门内景' },
