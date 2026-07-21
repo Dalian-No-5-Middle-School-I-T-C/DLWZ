@@ -1,3 +1,16 @@
+        // 主题初始化：在首次渲染图标前确定深浅色，避免闪烁；
+        // 优先读取本地存储，其次跟随系统配色偏好。
+        (function initTheme() {
+            let saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                saved = 'dark';
+            }
+            if (saved === 'dark') document.body.classList.add('dark');
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.setAttribute('data-lucide', saved === 'dark' ? 'moon' : 'sun');
+        })();
+
         // 初始化 Lucide 图标
         lucide.createIcons();
 
@@ -194,16 +207,6 @@
         renderNews();
         renderCampus();
 
-        // 加载动画
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                }, 500);
-            }, 1000);
-        });
-
         // 初始化 Swiper
         const heroSwiper = new Swiper('.hero-swiper', {
             loop: true,
@@ -266,24 +269,42 @@
             }, 30);
         }
 
-        // 导航栏滚动效果
+        // 导航栏滚动效果 + 顶部进度条
         let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            const backToTop = document.getElementById('back-to-top');
+        let ticking = false;
+        const progressBar = document.getElementById('scroll-progress');
+        const headerEl = document.getElementById('header');
+        const backToTop = document.getElementById('back-to-top');
+
+        function onScroll() {
             const currentScroll = window.pageYOffset;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = scrollHeight > 0 ? Math.min(currentScroll / scrollHeight, 1) : 0;
+
+            if (progressBar) progressBar.style.transform = 'scaleX(' + pct + ')';
 
             if (currentScroll > 100) {
-                header.classList.add('shadow-md');
+                headerEl.classList.add('shadow-md');
                 backToTop.classList.remove('opacity-0', 'invisible');
                 backToTop.classList.add('opacity-100', 'visible');
             } else {
-                header.classList.remove('shadow-md');
+                headerEl.classList.remove('shadow-md');
                 backToTop.classList.add('opacity-0', 'invisible');
                 backToTop.classList.remove('opacity-100', 'visible');
             }
 
+            if (currentScroll > 50) headerEl.classList.add('scrolled');
+            else headerEl.classList.remove('scrolled');
+
             lastScroll = currentScroll;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(onScroll);
+                ticking = true;
+            }
         });
 
         // 返回顶部
@@ -306,17 +327,15 @@
             menu.classList.toggle('hidden');
         }
 
-        // 主题切换（简单模拟）
+        // 主题切换：重建按钮内的图标元素，避免依赖被 Lucide 替换后的节点
         function toggleTheme() {
-            const icon = document.getElementById('theme-icon');
-            if (icon.getAttribute('data-lucide') === 'sun') {
-                icon.setAttribute('data-lucide', 'moon');
-                document.body.classList.add('dark');
-            } else {
-                icon.setAttribute('data-lucide', 'sun');
-                document.body.classList.remove('dark');
+            const isDark = document.body.classList.toggle('dark');
+            const btn = document.getElementById('theme-btn');
+            if (btn) {
+                btn.innerHTML = '<i data-lucide="' + (isDark ? 'moon' : 'sun') + '" class="w-5 h-5 text-slate-600" id="theme-icon"></i>';
             }
-            lucide.createIcons();
+            if (window.lucide) lucide.createIcons();
+            try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
         }
 
         // 标签切换
@@ -342,15 +361,24 @@
 
         // Lightbox（数据来自上方 campusImages 数组）
         let currentImage = 0;
-        //何意味
 
         function getSchoolDurationYears() {
             const startYear = 1957;
             const currentYear = new Date().getFullYear();
             return currentYear - startYear;
         }
-        
-        document.getElementById('school-duration').textContent = `始建于1957年 · ${getSchoolDurationYears()}年办学历史`;
+
+        const schoolYears = getSchoolDurationYears();
+        const durationEl = document.getElementById('school-duration');
+        if (durationEl) durationEl.textContent = `始建于1957年 · ${schoolYears}年办学历史`;
+
+        // 同步“办学历史”数字，避免与正文/计数动画写死的数值不一致
+        const yearsText = document.getElementById('years-text');
+        if (yearsText) yearsText.textContent = schoolYears;
+        const statYears = document.getElementById('stat-years');
+        if (statYears) statYears.setAttribute('data-target', String(schoolYears));
+        const footerYears = document.getElementById('footer-years');
+        if (footerYears) footerYears.textContent = schoolYears;
 
         function openLightbox(index) {
             currentImage = index;

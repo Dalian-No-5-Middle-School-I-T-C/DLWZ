@@ -1,0 +1,71 @@
+/* =============================================================
+   大连五中官网 · 红金精致化编辑层（editorial refinement layer）
+   纯 CSS，加载于 style.css 之后，无需重新编译 Tailwind。
+   作用：统一品牌色（红 #C5304D / 酒红 #9B1B3A / 金 #D4AF37），
+   替换残留的 emerald 色块，强化红金一致性。
+   ============================================================= */
+
+:root {
+    --paper: #F7F3EC;
+    --ink: #1F1B18;
+    --line: #E4DCCF;
+    --red: #C5304D;
+    --red-dark: #9B1B3A;
+    --gold: #D4AF37;
+    --gold-soft: #E2B857;
+}
+
+/* 英雄区第二张幻灯片：红金叠加层（替换原 emerald 叠加） */
+.hero-overlay-red {
+    background: linear-gradient(135deg, rgba(155, 27, 58, 0.86) 0%, rgba(197, 48, 77, 0.80) 100%) !important;
+}
+
+/* 「和美环境」卡片：金色渐变（四和雅卡：和顺→酒红/和雅→红/和乐→琥珀/和美→金） */
+.brand-card-gold {
+    background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%) !important;
+    color: #fff;
+}
+.brand-card-gold .brand-icon {
+    transition: all 0.3s ease;
+}
+.brand-card-gold:hover .brand-icon {
+    background: #fff !important;
+    color: var(--red-dark) !important;
+}
+
+/* 「获奖教师」统计卡：红金淡色软底（替换原 emerald 软底） */
+.brand-soft {
+    background: rgba(197, 48, 77, 0.10) !important;
+}
+.brand-ico {
+    color: var(--red) !important;
+}
+
+/* 通用卡片 hover 阴影：由蓝改红，强化品牌一致性 */
+.card-hover:hover {
+    box-shadow: 0 20px 40px -10px rgba(155, 27, 58, 0.18) !important;
+}
+
+/* 共享蓝色渐变叠加层（校园风光等处的 .gradient-overlay）改为红金 */
+.gradient-overlay {
+    background: linear-gradient(to top, rgba(155, 27, 58, 0.82) 0%, rgba(197, 48, 77, 0.42) 40%, transparent 100%) !important;
+}
+
+/* 编辑风小标签（eyebrow）：等宽大写 + 金色细线，供后续扩展使用 */
+.rule-eyebrow {
+    font-family: 'Noto Sans SC', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.rule-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    display: inline-block;
+}

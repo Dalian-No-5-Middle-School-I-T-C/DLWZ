@@ -1,0 +1,94 @@
+/* =============================================================
+   大连五中官网 · 深色模式（dark mode）
+   纯 CSS，链接于 editorial.css 之后。无需重新编译 Tailwind。
+   触发：<body class="dark">（由 index.js 切换并持久化）。
+   配色：暖调近黑底 + 米白文字 + 红金品牌色保持不变。
+   ============================================================= */
+
+body.dark {
+    background-color: #17110f;
+    color: #ece3d8;
+    color-scheme: dark;
+}
+
+/* 过渡：主题切换更顺滑 */
+body,
+body.dark {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body.dark .bg-white,
+body.dark .bg-slate-50,
+body.dark .bg-slate-100 {
+    transition: background-color 0.3s ease;
+}
+body.dark .text-slate-800,
+body.dark .text-slate-900,
+body.dark .text-slate-700,
+body.dark .text-slate-600,
+body.dark .text-slate-500 {
+    transition: color 0.3s ease;
+}
+
+/* —— 中性表面翻转 —— */
+body.dark .bg-slate-50   { background-color: #1c1513; }
+body.dark .bg-white      { background-color: #271e1b; }
+body.dark .bg-slate-100  { background-color: #2c211d; }
+
+/* —— 边框 —— */
+body.dark .border-slate-100 { border-color: #3a2c27; }
+body.dark .border-slate-200 { border-color: #3a2c27; }
+
+/* —— 文字层级（深底上整体提亮，正文/次要文字达 AA 可读） —— */
+body.dark .text-slate-900 { color: #f6f0e7; }
+body.dark .text-slate-800 { color: #ece3d8; }
+body.dark .text-slate-700 { color: #ddd0c3; }
+body.dark .text-slate-600 { color: #cabdaf; }  /* 正文主色，对比度≈8:1 */
+body.dark .text-slate-500 { color: #b3a698; }  /* 说明/标签，对比度≈7:1 */
+body.dark .text-slate-400 { color: #9c8e80; }  /* 占位符/极弱提示，对比度≈5:1 */
+
+/* —— 品牌文字在深底上提亮，保证对比度 —— */
+body.dark .text-school-dark { color: #ec93a8; }
+body.dark .text-school-red  { color: #f08ba0; }
+/* 金色标签在深底上提亮，避免发暗难辨 */
+body.dark .text-school-gold { color: #e6c063; }
+
+/* 金色 CTA 按钮在深色模式下底色仍是金色，必须保留深酒红字，
+   否则 .text-school-dark 被全局提亮成浅粉后压在金底上几乎不可见（对比度≈1:1） */
+body.dark .bg-school-gold.text-school-dark { color: #7a1426; }
+
+/* 深红页脚上的极淡白字（版权/链接）提亮，避免看不清 */
+body.dark .text-white\/50 { color: rgba(255, 255, 255, 0.72); }
+
+/* —— 悬浮态（导航/菜单项） —— */
+body.dark .hover\:bg-slate-50:hover { background-color: #2f241f; }
+body.dark .hover\:bg-slate-100:hover { background-color: #322620; }
+body.dark .placeholder\:text-slate-400::placeholder { color: #7a6d62; }
+
+/* —— 品牌浅色底纹在深底上提亮 —— */
+body.dark .bg-school-dark\/5  { background-color: rgba(197, 47, 77, 0.14); }
+body.dark .bg-school-dark\/10 { background-color: rgba(155, 27, 58, 0.22); }
+body.dark .bg-school-red\/10  { background-color: rgba(197, 47, 77, 0.20); }
+body.dark .bg-school-gold\/10 { background-color: rgba(212, 175, 55, 0.16); }
+body.dark .bg-school-gold\/20 { background-color: rgba(212, 175, 55, 0.22); }
+
+/* —— 固定/浮层元素 —— */
+body.dark #header {
+    background-color: rgba(23, 17, 15, 0.92);
+    border-color: #3a2c27;
+}
+body.dark #search-bar,
+body.dark #mobile-menu {
+    background-color: #271e1b;
+    border-color: #3a2c27;
+}
+
+/* —— 底部地图卡片 —— */
+body.dark .map-card {
+    background-color: #271e1b;
+}
+
+/* —— 选中文本 —— */
+body.dark ::selection {
+    background: rgba(212, 175, 55, 0.30);
+    color: #fff;
+}
